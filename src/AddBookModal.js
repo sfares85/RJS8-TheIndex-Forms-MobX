@@ -12,6 +12,7 @@ class AddBookModal extends Component {
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
   }
+
   onOpenModal() {
     this.setState({ open: true });
   }
@@ -19,6 +20,7 @@ class AddBookModal extends Component {
   onCloseModal() {
     this.setState({ open: false });
   }
+
   render() {
     const { open } = this.state;
     return (

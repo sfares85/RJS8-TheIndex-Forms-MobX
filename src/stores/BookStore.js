@@ -25,7 +25,7 @@ class BookStore {
 
   get filteredBooks() {
     return this.books.filter(book => {
-      return book.title.toLowerCase().includes(this.query);
+      return book.title.toLowerCase().includes(this.query.toLowerCase());
     });
   }
 

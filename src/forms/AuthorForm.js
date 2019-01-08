@@ -11,31 +11,44 @@ class AuthorForm extends Component {
       imageUrl: "",
       books: []
     };
-    this.onTextChange = this.onTextChange.bind(this);
-    this.submitAuthor = this.submitAuthor.bind(this);
   }
 
   render() {
     return (
-      <div>
+      <div className="mt-5">
         <form>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">First Name</span>
             </div>
-            <input type="text" className="form-control" name="first_name" />
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.first_name}
+              name="first_name"
+            />
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">Last Name</span>
             </div>
-            <input type="text" className="form-control" name="last_name" />
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.last_name}
+              name="last_name"
+            />
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">Image URL</span>
             </div>
-            <input type="text" className="form-control" name="imageUrl" />
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.imageUrl}
+              name="imageUrl"
+            />
           </div>
           <input type="submit" /> <br />
         </form>
