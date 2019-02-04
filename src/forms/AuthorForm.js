@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 
-import authorStore from "../stores/AuthorStore";
+import authorStore from "../stores/authorStore";
 
 class AuthorForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      first_name: "",
-      last_name: "",
-      imageUrl: "",
-      books: []
-    };
-  }
+  state = {
+    first_name: "",
+    last_name: "",
+    imageUrl: "",
+    books: []
+  };
 
   render() {
     return (
-      <div className="mt-5">
+      <div className="mt-5 p-2">
         <form>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
