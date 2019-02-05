@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 
 // Components
+import AddAuthorCard from "./AddAuthorCard";
 import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
 
@@ -18,7 +19,10 @@ class AuthorsList extends Component {
       <div>
         <h3>Authors</h3>
         <SearchBar store={authorStore} />
-        <div className="row">{authorCards}</div>
+        <div className="row">
+          <AddAuthorCard />
+          {authorCards}
+        </div>
       </div>
     );
   }

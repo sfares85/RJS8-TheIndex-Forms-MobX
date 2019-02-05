@@ -5,12 +5,18 @@ const instance = axios.create({
   baseURL: "https://the-index-api.herokuapp.com"
 });
 
+function errToArray(err) {
+  return Object.keys(err).map(key => `${key}: ${err[key]}`);
+}
+
 class AuthorStore {
   authors = [];
 
   loading = true;
 
   query = "";
+
+  errors = null;
 
   fetchAuthors = async () => {
     try {
@@ -20,6 +26,17 @@ class AuthorStore {
       this.loading = false;
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  addAuthor = async newAuthor => {
+    try {
+      const res = await instance.post("/api/authors/", newAuthor);
+      const author = res.data;
+      this.authors.unshift(author);
+      this.errors = null;
+    } catch (err) {
+      this.errors = errToArray(err.response.data);
     }
   };
 
@@ -37,6 +54,7 @@ class AuthorStore {
 decorate(AuthorStore, {
   authors: observable,
   loading: observable,
+  errors: observable,
   query: observable,
   filteredAuthors: computed
 });
