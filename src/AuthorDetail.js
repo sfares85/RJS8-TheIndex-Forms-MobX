@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // Components
 import BookTable from "./BookTable";
@@ -7,28 +7,26 @@ import BookTable from "./BookTable";
 import authorStore from "./stores/authorStore";
 import bookStore from "./stores/bookStore";
 
-class AuthorDetail extends Component {
-  render() {
-    const authorID = this.props.match.params.authorID;
-    const author = authorStore.getAuthorById(authorID);
-    const authorName = `${author.first_name} ${author.last_name}`;
+const AuthorDetail = props => {
+  const authorID = props.match.params.authorID;
+  const author = authorStore.getAuthorById(authorID);
+  const authorName = `${author.first_name} ${author.last_name}`;
 
-    const books = author.books.map(bookID => bookStore.getBookById(bookID));
+  const books = author.books.map(bookID => bookStore.getBookById(bookID));
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <h3>{authorName}</h3>
-          <img
-            src={author.imageUrl}
-            className="img-thumbnail img-fluid"
-            alt={authorName}
-          />
-        </div>
-        <BookTable books={books} />
+        <h3>{authorName}</h3>
+        <img
+          src={author.imageUrl}
+          className="img-thumbnail img-fluid"
+          alt={authorName}
+        />
       </div>
-    );
-  }
-}
+      <BookTable books={books} />
+    </div>
+  );
+};
 
 export default AuthorDetail;

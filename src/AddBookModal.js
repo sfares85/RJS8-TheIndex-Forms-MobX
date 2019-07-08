@@ -18,7 +18,7 @@ class AddBookModal extends Component {
       <div>
         <Modal open={open} onClose={this.onCloseModal} center>
           {/* You'll need to build a BookForm component before uncommenting the following line */}
-          {/* <BookForm authorID={this.props.authorID} /> */}
+          {/* <BookForm author={this.props.author} /> */}
           <h1>YOU NEED TO ACTUALLY MAKE A BOOK FORM!!!!!!</h1>
         </Modal>
         <input type="button" onClick={this.onOpenModal} value="Add New Book!" />
