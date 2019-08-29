@@ -4,7 +4,9 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "https://the-index-api.herokuapp.com"
 });
-
+function errToArray(err) {
+  return Object.keys(err).map(key => `${key}: ${err[key]}`);
+}
 class BookStore {
   books = [];
 
@@ -14,13 +16,24 @@ class BookStore {
 
   fetchBooks = async () => {
     try {
-      const res = await instance.get(
-        "https://the-index-api.herokuapp.com/api/books/"
-      );
+      const res = await instance.get("/api/books/");
       const books = res.data;
       this.books = books;
       this.loading = false;
     } catch (err) {}
+  };
+  addBook = async (newBook, author) => {
+    newBook.authors = [author.id];
+    try {
+      //Add the author.id to newBook.authors
+
+      const res = await instance.post("/api/books/", newBook);
+      const book = res.data;
+      this.books.unshift(book);
+      this.errors = null;
+    } catch (err) {
+      this.errors = errToArray(err.response.data);
+    }
   };
 
   get filteredBooks() {
